@@ -52,16 +52,24 @@ class _SplashActivityState extends State<SplashActivity> {
             ),
           ),
           Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(left: 20, right: 20),
-              child: ElevatedButton(
-                child: Text("Get Started"),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ));
-                },
-              )),
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: ElevatedButton(
+              child: Text("Get Started"),
+              onPressed: () {
+                setState(
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

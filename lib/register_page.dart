@@ -1,23 +1,23 @@
-import 'package:expense_project_flutter/register_page.dart';
+import 'package:expense_project_flutter/home_page.dart';
+import 'package:expense_project_flutter/login.dart';
 import 'package:expense_project_flutter/utility.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  String email = '', pass = '';
+class _RegisterPageState extends State<RegisterPage> {
+  String name = '', email = '', pass = '';
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login Page"),
-        leading: Icon(Icons.account_balance),
+        title: Text("Register Detail"),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 Text(
-                  "Login Details",
+                  "Register Details",
                   style: TextStyle(
                       fontSize: 25,
                       color: Colors.orange,
@@ -47,6 +47,32 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(
                   height: 30,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.orange, width: 2),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: TextFormField(
+                    onChanged: (value) => name = value,
+                    validator: (value) =>
+                        (value.isEmpty) ? "Please enter name" : null,
+                    decoration: InputDecoration(
+                      labelText: "Name Here",
+                      labelStyle: TextStyle(),
+                      icon: Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.access_alarm,
+                        ),
+                      ),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -108,11 +134,19 @@ class _LoginPageState extends State<LoginPage> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith(
                             (states) => Colors.orange)),
-                    child: Text("Login Here"),
+                    child: Text("Submit Here"),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         Utility().message("Successfully Validate");
-                        print(email + "\t" + pass);
+                        print(email + "\t" + pass + "\t" + name);
+                        setState(() {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ));
+                        });
                       } else {
                         Utility().message("Validation Failed");
                       }
@@ -128,14 +162,14 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
+                          builder: (context) => LoginPage(),
                         ));
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.only(right: 20),
                     child: Text(
-                      "New user click here",
+                      "For login click here",
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         color: Colors.blue,
