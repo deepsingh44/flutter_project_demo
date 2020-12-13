@@ -16,10 +16,10 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
   <table>
   <tr>
-    <td><img src="Screenshot_1607859914.png" width="100%"><td>
-    <td><img src="Screenshot_1607859917.png" width="100%"><td>
-    <td><img src="Screenshot_1607848153.png" width="100%"><td>
-    <td><img src="Screenshot_1607859910.png" width="100%"><td>
+    <td><img src="Screenshot_1607859914.png" width="100%" height="300"><td>
+    <td><img src="Screenshot_1607859917.png" width="100%" height="300"><td>
+    <td><img src="Screenshot_1607848153.png" width="100%" height="300"><td>
+    <td><img src="Screenshot_1607859910.png" width="100%" height="300"><td>
   </tr>
   <table>
 
