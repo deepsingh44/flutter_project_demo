@@ -16,5 +16,7 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 <img src="Screenshot_1607859914.png" width="30%">
-<img src="Screenshot_1607859914.png" width="30%">
-<img src="Screenshot_1607859914.png" width="30%">
+<img src="Screenshot_1607859917.png" width="30%">
+<img src="Screenshot_1607848153.png" width="30%">
+<img src="Screenshot_1607859910.png" width="30%">
+
