@@ -1,6 +1,6 @@
 # expense_project_flutter
 
-A new Flutter application.
+> A new Flutter application.
 
 ## Getting Started
 
