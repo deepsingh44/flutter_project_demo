@@ -108,12 +108,20 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(20),
+          margin: EdgeInsets.all(2),
           child: Column(
             children: [
-              Container(
-                height: 200,
-                color: Colors.red,
+              Card(
+                elevation: 10,
+                child: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.red,
+                  child: Image(
+                    image: NetworkImage("https://cars.usnews.com/static/images/article/201811/127803/01_New_Volvo_XC40_-_exterior_640x420.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -126,7 +134,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Card(
                     elevation: 10,
+                    margin: EdgeInsets.all(15),
                     child: Container(
+                      margin: EdgeInsets.all(10),
                       color: Colors.yellowAccent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +152,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Card(
                     elevation: 10,
+                    margin: EdgeInsets.all(15),
                     child: Container(
+                      margin: EdgeInsets.all(10),
                       color: Colors.yellowAccent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +170,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Card(
                     elevation: 10,
+                    margin: EdgeInsets.all(15),
                     child: Container(
+                      margin: EdgeInsets.all(10),
                       color: Colors.yellowAccent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -174,39 +188,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Card(
                     elevation: 10,
+                    margin: EdgeInsets.all(15),
                     child: Container(
-                      color: Colors.yellowAccent,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.account_circle_rounded,
-                            size: 80,
-                          ),
-                          Text('First', style: TextStyle(fontSize: 20)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 10,
-                    child: Container(
-                      color: Colors.yellowAccent,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.account_circle_rounded,
-                            size: 80,
-                          ),
-                          Text('First', style: TextStyle(fontSize: 20)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 10,
-                    child: Container(
+                      margin: EdgeInsets.all(10),
                       color: Colors.yellowAccent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
