@@ -55,6 +55,9 @@ class _SplashActivityState extends State<SplashActivity> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith(
+                          (states) => Colors.red)),
               child: Text("Get Started"),
               onPressed: () {
                 setState(
