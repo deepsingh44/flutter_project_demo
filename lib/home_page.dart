@@ -1,6 +1,9 @@
+import 'package:expense_project_flutter/about.dart';
 import 'package:expense_project_flutter/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -74,16 +77,20 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("About Me"),
                 leading: Icon(Icons.message),
+                onTap: () => Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => About(),
+                )),
               ),
               ListTile(
                 title: Text("Profile"),
                 leading: Icon(Icons.account_circle_rounded),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProfilePage(),
-                  ),
-                ),
+                onTap: () =>
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(),
+                      ),
+                    ),
               ),
               ListTile(
                 title: Text("Services"),
@@ -114,6 +121,20 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("Share"),
                 leading: Icon(Icons.share),
+                onTap: () {
+                  Share.share("https://deepsingh44.blogspot.com",
+                      subject: "share on browser");
+                },
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              ListTile(
+                title: Text("Call Me"),
+                leading: Icon(Icons.call),
+                onTap: () {
+                  _launchURL();
+                },
               ),
             ],
           ),
@@ -130,7 +151,10 @@ class _HomePageState extends State<HomePage> {
                     elevation: 10,
                     child: Container(
                       height: 200,
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       color: Colors.red,
                       child: Image(
                         image: NetworkImage(
@@ -146,41 +170,42 @@ class _HomePageState extends State<HomePage> {
                     crossAxisCount: 2,
                     shrinkWrap: true,
                     children: modules
-                        .map((value) => Container(
+                        .map((value) =>
+                        Container(
+                          margin: EdgeInsets.all(5),
+                          //color: Colors.yellow,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              print(value.title);
+                            },
+                            child: Card(
+                              elevation: 20,
                               margin: EdgeInsets.all(5),
-                              //color: Colors.yellow,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  print(value.title);
-                                },
-                                child: Card(
-                                  elevation: 20,
-                                  margin: EdgeInsets.all(5),
-                                  shadowColor: Colors.white,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        value.icon,
-                                        size: 100,
-                                        color: Colors.blueGrey,
-                                      ),
-                                      Text(
-                                        value.title,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          color: Colors.blueGrey,
-                                        ),
-                                      ),
-                                    ],
+                              shadowColor: Colors.white,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    value.icon,
+                                    size: 100,
+                                    color: Colors.blueGrey,
                                   ),
-                                ),
+                                  Text(
+                                    value.title,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.blueGrey,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ))
+                            ),
+                          ),
+                        ))
                         .toList(),
                   ),
                 ],
@@ -198,13 +223,12 @@ class _HomePageState extends State<HomePage> {
             unselectedFontSize: 12,
             selectedFontSize: 12,
             unselectedLabelStyle: TextStyle(fontFamily: "serif"),
-            type:BottomNavigationBarType.fixed,
+            type: BottomNavigationBarType.fixed,
             onTap: (value) {
               setState(() {
                 index = value;
               });
             },
-
             items: [
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
@@ -241,6 +265,22 @@ class _HomePageState extends State<HomePage> {
             ]),
       ),
     );
+  }
+
+  _launchURL() async {
+    //for launching url
+    //launchUrl("HTTP://example.com");
+    // for dial phone number
+    //launchUrl("tel:+99364921507");
+    // for sending email
+    //launchUrl("mailto:deep@gmail.com?subject=Meeting&body=Can we meet via Skype");
+    const url = 'tel:+918826262626';
+    print("Hello");
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 
