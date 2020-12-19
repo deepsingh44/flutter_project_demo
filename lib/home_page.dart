@@ -218,7 +218,6 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.orange,
             showSelectedLabels: true,
             fixedColor: Colors.white,
-            mouseCursor: MouseCursor.defer,
             showUnselectedLabels: true,
             unselectedFontSize: 12,
             selectedFontSize: 12,

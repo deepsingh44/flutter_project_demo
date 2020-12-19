@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "778941383786",
+    "firebase_url": "https://fcmdemo-635c2.firebaseio.com",
+    "project_id": "fcmdemo-635c2",
+    "storage_bucket": "fcmdemo-635c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778941383786:android:cb27071664f76f3405b613",
+        "android_client_info": {
+          "package_name": "com.example.expense_project_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778941383786-da355kfvptru9l1t3jr1b13g9blmcjj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbwK4wBWV9nJx5BaLuVDMquQfTJr71ZMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778941383786-da355kfvptru9l1t3jr1b13g9blmcjj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

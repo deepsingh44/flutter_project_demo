@@ -20,8 +20,8 @@ class _GoogleMapDemoState extends State<GoogleMapDemo> {
   @override
   void initState() {
     allMarkers.add(Marker(
-      infoWindow: InfoWindow(
-          title: "Ducat Institute", snippet: "Education Sector"),
+      infoWindow:
+          InfoWindow(title: "Ducat Institute", snippet: "Education Sector"),
       markerId: MarkerId("MyMarker"),
       icon: BitmapDescriptor.defaultMarker,
       position: _center,
