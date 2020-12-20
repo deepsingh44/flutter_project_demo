@@ -103,7 +103,11 @@ class _AboutState extends State<About> {
                   prefixIcon: IconButton(
                     icon: Icon(
                         (status) ? Icons.visibility_off : Icons.visibility),
-                    onPressed: () => (status) ? status = false : status = true,
+                    onPressed: (){
+                      setState(() {
+                        status= !status;
+                      });
+                    },
                   ),
                   labelText: "Password",
                   border: OutlineInputBorder(
