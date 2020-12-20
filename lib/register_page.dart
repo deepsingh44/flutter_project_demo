@@ -1,8 +1,12 @@
+import 'package:expense_project_flutter/database/mydatabase.dart';
 import 'package:expense_project_flutter/home_page.dart';
 import 'package:expense_project_flutter/login.dart';
+import 'package:expense_project_flutter/user.dart';
 import 'package:expense_project_flutter/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'database/mydatabase.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -139,16 +143,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       if (_formKey.currentState.validate()) {
                         Utility().message("Successfully Validate");
                         print(email + "\t" + pass + "\t" + name);
-                        setState(() {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePage(),
-                              ));
+                        User user=User(name,email,pass);
+                        MyDatabase.myDatabase.insert(user).then((value) => {
+                          if(value>0){
+                            print("successfully registered"),
+                          }else{
+                            print("registered failed"),
+                          }
                         });
-                      } else {
-                        Utility().message("Validation Failed");
+
                       }
                     },
                   ),

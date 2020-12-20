@@ -1,12 +1,20 @@
+import 'package:expense_project_flutter/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class About extends StatefulWidget {
+  User _user;
+
+  About(this._user);
+
   @override
   _AboutState createState() => _AboutState();
 }
 
 class _AboutState extends State<About> {
+  bool status = true;
+  IconData myicon = Icons.visibility;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +58,7 @@ class _AboutState extends State<About> {
               height: 5,
             ),
             Text(
-              "Deep Singh",
+              widget._user.name,
               style: TextStyle(
                   fontSize: 25,
                   color: Colors.grey,
@@ -72,6 +80,8 @@ class _AboutState extends State<About> {
             Container(
               margin: EdgeInsets.only(left: 20, right: 20),
               child: TextFormField(
+                initialValue: widget._user.email,
+                readOnly: true,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: "Email",
@@ -87,9 +97,14 @@ class _AboutState extends State<About> {
             Container(
               margin: EdgeInsets.only(left: 20, right: 20),
               child: TextFormField(
-                obscureText: true,
+                initialValue: widget._user.pass,
+                obscureText: status,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.visibility),
+                  prefixIcon: IconButton(
+                    icon: Icon(
+                        (status) ? Icons.visibility_off : Icons.visibility),
+                    onPressed: () => (status) ? status = false : status = true,
+                  ),
                   labelText: "Password",
                   border: OutlineInputBorder(
                     gapPadding: 2,
@@ -103,9 +118,10 @@ class _AboutState extends State<About> {
             Container(
               margin: EdgeInsets.only(left: 20, right: 20),
               child: TextFormField(
+                initialValue: widget._user.name,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.call),
-                  labelText: "Mobile",
+                  labelText: "Name",
                   border: OutlineInputBorder(
                     gapPadding: 2,
                   ),

@@ -1,3 +1,5 @@
+import 'package:expense_project_flutter/database/mydatabase.dart';
+import 'package:expense_project_flutter/home_page.dart';
 import 'package:expense_project_flutter/register_page.dart';
 import 'package:expense_project_flutter/utility.dart';
 import 'package:flutter/cupertino.dart';
@@ -111,10 +113,27 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text("Login Here"),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        Utility().message("Successfully Validate");
-                        print(email + "\t" + pass);
-                      } else {
-                        Utility().message("Validation Failed");
+                        // Utility().message("Successfully Validate");
+                        //print(email + "\t" + pass);
+                        MyDatabase.myDatabase.login(email, pass).then(
+                              (user) => {
+                                if (user != null)
+                                  {
+                                    Navigator.pop(context),
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(user),
+                                      ),
+                                    ),
+                                  }
+                                else
+                                  {
+                                    Utility()
+                                        .message("invalid email or password"),
+                                  }
+                              },
+                            );
                       }
                     },
                   ),

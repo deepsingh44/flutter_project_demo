@@ -1,7 +1,11 @@
+import 'package:expense_project_flutter/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
+  User _user;
+  ProfilePage(this._user);
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }

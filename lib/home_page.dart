@@ -1,11 +1,16 @@
 import 'package:expense_project_flutter/about.dart';
 import 'package:expense_project_flutter/profile_page.dart';
+import 'package:expense_project_flutter/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
+  User _user;
+
+  HomePage(this._user);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -59,12 +64,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Text(
-                      'Deep Singh',
+                      widget._user.name,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     Text(
-                      'deepsingh44@gmail.com',
+                      widget._user.email,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),
@@ -77,20 +82,21 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("About Me"),
                 leading: Icon(Icons.message),
-                onTap: () => Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => About(),
-                )),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => About(widget._user),
+                    )),
               ),
               ListTile(
                 title: Text("Profile"),
                 leading: Icon(Icons.account_circle_rounded),
-                onTap: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(),
-                      ),
-                    ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(widget._user),
+                  ),
+                ),
               ),
               ListTile(
                 title: Text("Services"),
@@ -151,10 +157,7 @@ class _HomePageState extends State<HomePage> {
                     elevation: 10,
                     child: Container(
                       height: 200,
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       color: Colors.red,
                       child: Image(
                         image: NetworkImage(
@@ -170,42 +173,41 @@ class _HomePageState extends State<HomePage> {
                     crossAxisCount: 2,
                     shrinkWrap: true,
                     children: modules
-                        .map((value) =>
-                        Container(
+                        .map((value) => Container(
+                      margin: EdgeInsets.all(5),
+                      //color: Colors.yellow,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          print(value.title);
+                        },
+                        child: Card(
+                          elevation: 20,
                           margin: EdgeInsets.all(5),
-                          //color: Colors.yellow,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              print(value.title);
-                            },
-                            child: Card(
-                              elevation: 20,
-                              margin: EdgeInsets.all(5),
-                              shadowColor: Colors.white,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    value.icon,
-                                    size: 100,
-                                    color: Colors.blueGrey,
-                                  ),
-                                  Text(
-                                    value.title,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ],
+                          shadowColor: Colors.white,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                value.icon,
+                                size: 100,
+                                color: Colors.blueGrey,
                               ),
-                            ),
+                              Text(
+                                value.title,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                            ],
                           ),
-                        ))
+                        ),
+                      ),
+                    ))
                         .toList(),
                   ),
                 ],
