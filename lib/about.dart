@@ -1,6 +1,7 @@
 import 'package:expense_project_flutter/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_project_flutter/database/mydatabase.dart';
 
 class About extends StatefulWidget {
   User _user;
@@ -139,7 +140,16 @@ class _AboutState extends State<About> {
               margin: EdgeInsets.only(left: 20, right: 20),
               child: ElevatedButton(
                 child: Text("Edit Details"),
-                onPressed: () {},
+                onPressed: () {
+                  MyDatabase.myDatabase.getAllUsers().then((users)=>{
+
+                    for(User user in users){
+                      print(user.name),
+                      print(user.email),
+                      print(user.pass),
+                    }
+                  });
+                },
               ),
             ),
           ],

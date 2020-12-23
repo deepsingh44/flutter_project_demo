@@ -93,14 +93,64 @@ class _FirebaseDemoState extends State<FirebaseDemo> {
               ),
               Container(
                 child: FutureBuilder(
-                  future: databaseReference.child("student").once(),
+                  future: fetchAll(),
                   builder: (context, snapshot) {
-                    if (snapshot.hasData != null) {
+                    //Map<dynamic, dynamic> values = snapshot.data;
+                    if (snapshot.hasData) {
+                      print(snapshot.data.length);
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
-                          return Text(snapshot.data.length.toString());
+                          Student student = snapshot.data[index];
+                          return Container(
+                            margin:
+                                EdgeInsets.only(left: 10, right: 10, top: 5),
+                            padding: EdgeInsets.all(1),
+                            decoration: BoxDecoration(
+                              //border: Border.all(width: 1,color: Colors.red),
+                              color: Colors.blueGrey,
+                              gradient: LinearGradient(
+                                colors: [Colors.red, Colors.green],
+                              ),
+                            ),
+                            child: ListTile(
+                              title: Text(
+                                student.name,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              subtitle: Text(
+                                student.email,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              leading: Icon(
+                                Icons.stacked_bar_chart,
+                                color: Colors.white,
+                                size: 45,
+                              ),
+                              trailing: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            /*Text(student.name),
+                                Text(student.email),
+                                Text(student.mobile),*/
+                          );
                         },
                       );
                     } else {
@@ -134,24 +184,26 @@ class _FirebaseDemoState extends State<FirebaseDemo> {
     });
   }
 
-  Map<dynamic, dynamic> values;
-
-  Map<dynamic, dynamic> fetchAll() {
-    print("fetch code here");
-    setState(() {
-      databaseReference.child("student").once().then((value) => {
-            print(value.key),
-            values = value.value,
-            values.forEach((key, value) {
-              print(value["name"] +
+  Future<List<Student>> fetchAll() async {
+    List<Student> students = [];
+    databaseReference.child("student").once().then((value) => {
+          print(value.value is Map),
+          //values = value.value,
+          //values.forEach((key, value) { value.from})
+          for (var val in value.value.entries)
+            {
+              students.add(Student(
+                  name: val.value["name"],
+                  email: val.value["email"],
+                  mobile: val.value["mobile"])),
+              /* print(val.value["name"] +
                   "\t" +
-                  value["email"] +
+                  val.value["email"] +
                   "\t" +
-                  value["mobile"]);
-            })
-          });
-    });
-    return values;
+                  val.value["mobile"]),*/
+            }
+        });
+    return students;
   }
 }
 
@@ -166,5 +218,11 @@ class Student {
       'email': email,
       "mobile": mobile,
     };
+  }
+
+  Student.fromMap(dynamic obj) {
+    this.name = obj['name'];
+    this.email = obj['email'];
+    this.mobile = obj['mobile'];
   }
 }

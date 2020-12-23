@@ -1,4 +1,7 @@
+import 'package:expense_project_flutter/home_page.dart';
 import 'package:expense_project_flutter/login.dart';
+import 'package:expense_project_flutter/user.dart';
+import 'package:expense_project_flutter/utility.dart';
 import 'package:flutter/material.dart';
 
 class SplashActivity extends StatefulWidget {
@@ -57,17 +60,35 @@ class _SplashActivityState extends State<SplashActivity> {
             child: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith(
-                          (states) => Colors.red)),
+                      (states) => Colors.red)),
               child: Text("Get Started"),
               onPressed: () {
                 setState(
                   () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                    );
+                    Utility.getSharePrefrences().then((value) => {
+                          if (value.getString("email") != null)
+                            {
+                              Navigator.pop(context),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(User(
+                                      value.getString("name"),
+                                      value.getString("email"),
+                                      value.getString("pass"))),
+                                ),
+                              ),
+                            }
+                          else
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                ),
+                              ),
+                            }
+                        });
                   },
                 );
               },

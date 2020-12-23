@@ -1,6 +1,8 @@
 import 'package:expense_project_flutter/about.dart';
+import 'package:expense_project_flutter/login.dart';
 import 'package:expense_project_flutter/profile_page.dart';
 import 'package:expense_project_flutter/user.dart';
+import 'package:expense_project_flutter/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:share/share.dart';
@@ -109,6 +111,19 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("Logout"),
                 leading: Icon(Icons.logout),
+                onTap: () {
+                  setState(() {
+                    Utility.getSharePrefrences().then((value) => {
+                          value.remove("name"),
+                          value.remove("email"),
+                          value.remove("pass"),
+                          Navigator.pop(context),
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          )),
+                        });
+                  });
+                },
               ),
               Divider(
                 height: 5,
@@ -174,40 +189,40 @@ class _HomePageState extends State<HomePage> {
                     shrinkWrap: true,
                     children: modules
                         .map((value) => Container(
-                      margin: EdgeInsets.all(5),
-                      //color: Colors.yellow,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          print(value.title);
-                        },
-                        child: Card(
-                          elevation: 20,
-                          margin: EdgeInsets.all(5),
-                          shadowColor: Colors.white,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                value.icon,
-                                size: 100,
-                                color: Colors.blueGrey,
+                              margin: EdgeInsets.all(5),
+                              //color: Colors.yellow,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              Text(
-                                value.title,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.blueGrey,
+                              child: GestureDetector(
+                                onTap: () {
+                                  print(value.title);
+                                },
+                                child: Card(
+                                  elevation: 20,
+                                  margin: EdgeInsets.all(5),
+                                  shadowColor: Colors.white,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        value.icon,
+                                        size: 100,
+                                        color: Colors.blueGrey,
+                                      ),
+                                      Text(
+                                        value.title,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.blueGrey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ))
+                            ))
                         .toList(),
                   ),
                 ],

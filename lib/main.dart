@@ -8,6 +8,6 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(accentColor: Colors.orange),
-    home: SplashActivity(),
+    home: FirebaseDemo(),
   ));
 }

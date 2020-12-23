@@ -141,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text("Submit Here"),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        Utility().message("Successfully Validate");
+                        Utility.message("Successfully Validate");
                         print(email + "\t" + pass + "\t" + name);
                         User user=User(name,email,pass);
                         MyDatabase.myDatabase.insert(user).then((value) => {

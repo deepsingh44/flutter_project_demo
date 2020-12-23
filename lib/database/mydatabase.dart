@@ -78,4 +78,27 @@ class MyDatabase {
     }
     return null;
   }
+
+  Future<List<User>> getAllUsers()async{
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('$TABLE_NAME');
+    List<User> users = List<User>();
+    for (Map map in maps) {
+      users.add(User.fromMap(map));
+    }
+    return users;
+  }
+
+  /*Future<List<User>> getAllUsers()async{
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('$TABLE_NAME');
+    *//*result.forEach((row) => print(row));*//*
+    return List.generate(maps.length, (i) {
+      return User(
+        maps[i]['name'],
+        maps[i]['email'],
+        maps[i]['pass'],
+      );
+    });
+  }*/
 }
