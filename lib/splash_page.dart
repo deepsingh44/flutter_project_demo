@@ -75,7 +75,7 @@ class _SplashActivityState extends State<SplashActivity> {
                                   builder: (context) => HomePage(User(
                                       value.getString("name"),
                                       value.getString("email"),
-                                      value.getString("pass"))),
+                                      value.getString("pass"),),),
                                 ),
                               ),
                             }

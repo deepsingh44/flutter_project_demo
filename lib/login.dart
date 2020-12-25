@@ -119,29 +119,25 @@ class _LoginPageState extends State<LoginPage> {
                               (user) => {
                                 if (user != null)
                                   {
-                                    Utility
-                                        .getSharePrefrences()
-                                        .then((value) => {
-                                              value.setString(
-                                                  "email", user.email),
-                                              value.setString(
-                                                  "pass", user.pass),
-                                              value.setString(
-                                                  "name", user.name),
-                                              Navigator.pop(context),
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomePage(user),
-                                                ),
-                                              ),
-                                            }),
+                                    Utility.getSharePrefrences().then((value) =>
+                                        {
+                                          value.setString("email", user.email),
+                                          value.setString("pass", user.pass),
+                                          value.setString("name", user.name),
+                                          Navigator.pop(context),
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomePage(user),
+                                            ),
+                                          ),
+                                        }),
                                   }
                                 else
                                   {
-                                    Utility
-                                        .message("invalid email or password"),
+                                    Utility.message(
+                                        "invalid email or password"),
                                   }
                               },
                             );
