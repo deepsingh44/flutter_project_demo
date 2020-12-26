@@ -31,6 +31,7 @@ dependencies:
   animated_splash_screen: ^1.0.0+1
   fluttertoast: ^7.1.5
   share: ^0.6.3+5
+  carousel_slider: ^2.3.1
   url_launcher: ^5.7.10
   google_maps_flutter: ^1.0.6
   firebase_database: ^4.4.0
