@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -29,16 +30,19 @@ class _ImageSliderState extends State<ImageSlider> {
         title: Text("Image Slider"),
       ),
       body: Card(
+        elevation: 10,
         child: Container(
+          width: MediaQuery.of(context).size.width,
+          //height: 220,
           child: CarouselSlider(
             options: CarouselOptions(
-              height: 320.0,
               autoPlay: true,
-              autoPlayAnimationDuration: Duration(seconds: 5),
-              disableCenter: true,
+              //autoPlayAnimationDuration: Duration(seconds: 5),
+              disableCenter: false,
               //enlargeCenterPage: true,
-              viewportFraction: 0.9,
-              aspectRatio: 1.0,
+              //viewportFraction: 0.9,
+              autoPlayCurve: Curves.linear,
+              aspectRatio: 1.85,
             ),
             items: list.map((i) {
               return Builder(
@@ -46,19 +50,30 @@ class _ImageSliderState extends State<ImageSlider> {
                   return Container(
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.all(1),
-                    decoration: BoxDecoration(color: Colors.amber),
-                    child: Column(
+                    //decoration: BoxDecoration(color: Colors.amber,),
+                    child: Stack(
                       children: [
-                        Image(
-                          image: NetworkImage(i.image),
-                          fit: BoxFit.cover,
+                        Card(
+                          child: Container(
+                            child: Image(
+                              image: NetworkImage(i.image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                        Container(
-                          color: Colors.transparent,
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            i.text,
-                            style: TextStyle(fontSize: 20,color: Colors.white),
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Container(
+                            color: Colors.black45,
+                            width: MediaQuery.of(context).size.width,
+                            height: 30,
+                            padding: EdgeInsets.all(5),
+                            margin: EdgeInsets.all(5),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              i.text,
+                              style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold,),
+                            ),
                           ),
                         ),
                       ],
