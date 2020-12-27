@@ -32,14 +32,18 @@ class _ImageSliderState extends State<ImageSlider> {
       body: Card(
         elevation: 10,
         child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           //height: 220,
           child: CarouselSlider(
             options: CarouselOptions(
               autoPlay: true,
               //autoPlayAnimationDuration: Duration(seconds: 5),
               disableCenter: false,
-              //enlargeCenterPage: true,
+              //enlargeStrategy: CenterPageEnlargeStrategy.height,
+              enlargeCenterPage: true,
               //viewportFraction: 0.9,
               autoPlayCurve: Curves.linear,
               aspectRatio: 1.85,
@@ -48,7 +52,10 @@ class _ImageSliderState extends State<ImageSlider> {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                     margin: EdgeInsets.all(1),
                     //decoration: BoxDecoration(color: Colors.amber,),
                     child: Stack(
@@ -56,23 +63,26 @@ class _ImageSliderState extends State<ImageSlider> {
                         Card(
                           child: Container(
                             child: Image(
-                              image: NetworkImage(i.image),
+                              image: NetworkImage(i.image,),
                               fit: BoxFit.cover,
+                              //width: 1000,
                             ),
                           ),
                         ),
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Container(
-                            color: Colors.black45,
-                            width: MediaQuery.of(context).size.width,
+                            //color: Colors.black45,
+                            //width: MediaQuery.of(context).size.width,
                             height: 30,
                             padding: EdgeInsets.all(5),
                             margin: EdgeInsets.all(5),
                             alignment: Alignment.centerLeft,
                             child: Text(
                               i.text,
-                              style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold,),
+                              style: TextStyle(color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,),
                             ),
                           ),
                         ),

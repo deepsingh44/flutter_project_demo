@@ -1,4 +1,5 @@
 import 'package:expense_project_flutter/carousel/image_slider.dart';
+import 'package:expense_project_flutter/imagepicker/image_picker.dart';
 import 'package:expense_project_flutter/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,7 +8,7 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(accentColor: Colors.orange),
-    home:ImageSlider(),)
+    home:MyImagePicker(),)
   );
 }
 
