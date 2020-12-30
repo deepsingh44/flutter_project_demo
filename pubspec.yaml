@@ -40,6 +40,8 @@ dependencies:
   path_provider: ^1.6.24
   shared_preferences: ^0.5.12+4
   image_picker: ^0.6.7+17
+  camera: ^0.6.3+2
+  video_player:
 
 dev_dependencies:
   flutter_test:
