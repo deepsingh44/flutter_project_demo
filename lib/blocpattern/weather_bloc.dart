@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:expense_project_flutter/blocpattern/weather_model.dart';
 import 'package:expense_project_flutter/blocpattern/weather_repo.dart';
 
-class WeatherEvent extends Equatable {
+abstract class WeatherEvent extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [];
@@ -21,7 +21,7 @@ class FetchWeather extends WeatherEvent {
 
 class ResetWeather extends WeatherEvent {}
 
-class WeatherState extends Equatable {
+abstract class WeatherState extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [];
@@ -54,7 +54,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
-
     if (event is FetchWeather) {
       yield WeatherIsLoading();
 

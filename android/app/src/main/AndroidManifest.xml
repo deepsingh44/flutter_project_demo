@@ -2,7 +2,11 @@
     package="com.example.expense_project_flutter">
    <application
         android:label="expense_project_flutter"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       android:usesCleartextTraffic="true">
+       <uses-library
+           android:name="org.apache.http.legacy"
+           android:required="false" />
 
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyDz_pGVYpXmwKXZl6UlLzJo5NSRYyX5_9E"/>
