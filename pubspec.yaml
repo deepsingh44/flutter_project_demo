@@ -42,6 +42,12 @@ dependencies:
   image_picker: ^0.6.7+17
   camera: ^0.6.3+2
   video_player:
+  http: ^0.12.0+2
+  rxdart: ^0.22.0
+  intl: ^0.15.8
+  flutter_bloc: ^2.0.0
+  equatable: ^0.6.1
+  flare_flutter: ^1.7.1
 
 dev_dependencies:
   flutter_test:
@@ -60,7 +66,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - images/layer.jpg
+    - assets/
+    - images/layer.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
