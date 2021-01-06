@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-void main(){
+
+void main() {
   runApp(MyUpload());
 }
 
@@ -12,7 +13,9 @@ class MyUpload extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Upload Image"),),
+        appBar: AppBar(
+          title: Text("Upload Image"),
+        ),
         body: MyWidget(),
       ),
     );
@@ -20,15 +23,13 @@ class MyUpload extends StatelessWidget {
 }
 
 class MyWidget extends StatefulWidget {
-
-
   @override
   _MyWidgetState createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<MyWidget> {
-
   PickedFile _image;
+
   //this is a code get image from Camera
   _imgFromCamera() async {
     PickedFile image = await ImagePicker()
@@ -45,31 +46,41 @@ class _MyWidgetState extends State<MyWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            child: _image==null?Icon(Icons.image,size: 200,):Image.file(File(_image.path),width: 200,height: 200,),
+            child: _image == null
+                ? Icon(
+                    Icons.image,
+                    size: 200,
+                  )
+                : Image.file(
+                    File(_image.path),
+                    width: 200,
+                    height: 200,
+                  ),
           ),
           IconButton(
-            onPressed: (){
+            onPressed: () {
               _imgFromCamera();
             },
             icon: Icon(Icons.camera_alt),
           ),
           ElevatedButton(
             child: Text("Upload"),
-            onPressed: (){
+            onPressed: () {
               uploadImage(_image.path).then((value) => {
-                print("Successfully "),
-              });
+                    print("Successfully "),
+                  });
             },
           ),
         ],
       ),
     );
   }
+
   Future<String> uploadImage(filename) async {
-    var request = http.MultipartRequest('POST', Uri.parse("http://192.168.0.8:9876/FlutterWebServices/person"));
+    var request = http.MultipartRequest('POST',
+        Uri.parse("http://192.168.0.12:9876/FlutterWebServices/person"));
     request.files.add(await http.MultipartFile.fromPath('picture', filename));
     var res = await request.send();
     return res.reasonPhrase;
   }
-
 }
