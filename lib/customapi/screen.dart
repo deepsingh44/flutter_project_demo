@@ -127,30 +127,47 @@ class _MyApiConsumeState extends State<MyApiConsume> {
                   child: ElevatedButton(
                     child: Text("Fetch All Here"),
                     onPressed: () {
-                      setState(() {
-                        getAllStudent().then((value) => () {
-                          _widget = ListView.builder(
+                       setState(() {
+                        getAllStudent().then((value) => {
+                          print(value),
+                          _widget=ListView.builder(
                             shrinkWrap: true,
                             itemCount: value.length,
                             itemBuilder: (context, index) {
                               return ListTile(
-                                title: Text(
-                                  value[index].roll,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.blueGrey),
-                                ),
-                                subtitle: Text(
-                                  value[index].name,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white),
-                                ),
+                                title: Text(value[index].roll),
+                                subtitle: Text(value[index].name),
                               );
                             },
-                          );
+                          ),
                         });
                       });
+
+
+                       /* FutureBuilder(
+                          future: getAllStudent(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              print("Deep"+snapshot.data);
+                              return _widget = ListView.builder(
+                                itemCount: snapshot.data.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    child: ListTile(
+                                      title: Text(snapshot.data["roll"]),
+                                      subtitle: Text(snapshot.data["name"]),
+                                      leading: Icon(Icons.edit),
+                                    ),
+                                  );
+                                },
+                              );
+                            } else {
+                              return CircularProgressIndicator();
+                            }
+                          },
+                        );*/
+
                     },
                   ),
                 ),
@@ -201,13 +218,14 @@ class _MyApiConsumeState extends State<MyApiConsume> {
     final result = await http.Client().get(Api.MAIN_URL + "?opt=5");
     if (result.statusCode != 200) throw Exception();
     List<dynamic> responseData = jsonDecode(result.body);
-    print(responseData);
+
     responseData.forEach((student) {
       allStudents.add(Student(
         student['roll'],
         student['name'],
       ));
     });
+    /*print(allStudents);*/
     return allStudents;
   }
 

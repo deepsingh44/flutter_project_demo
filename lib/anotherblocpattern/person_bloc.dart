@@ -12,7 +12,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   PersonState get initialState => PersonIsNotSearched();
 
   @override
-  Stream<PersonState> mapEventToState(PersonEvent event) async*{
+  Stream<PersonState> mapEventToState(PersonEvent event) async* {
     if (event is FetchAllPerson) {
       yield PersonIsLoading();
       try {
@@ -22,7 +22,8 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
         print(_);
         yield PersonIsNotLoaded();
       }
-    } /*else if (event is ResetWeather) {
+    }
+    /*else if (event is ResetWeather) {
       yield WeatherIsNotSearched();
     }*/
   }

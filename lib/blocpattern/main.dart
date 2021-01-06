@@ -43,7 +43,7 @@ class SearchPage extends StatelessWidget {
           Center(
               child: Container(
             child: FlareActor(
-              "assets/WorldSpin.flr.jpg",
+              "images/layer.jpg",
               fit: BoxFit.contain,
               animation: "roll",
             ),

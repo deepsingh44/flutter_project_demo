@@ -1,4 +1,5 @@
 import 'package:expense_project_flutter/carousel/image_slider.dart';
+import 'package:expense_project_flutter/google_map.dart';
 import 'package:expense_project_flutter/imagepicker/image_picker.dart';
 import 'package:expense_project_flutter/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: Colors.orange),
-      home: MyToast(),
+      home: GoogleMapDemo(),
     ),
   );
 }
