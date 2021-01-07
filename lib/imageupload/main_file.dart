@@ -78,7 +78,7 @@ class _MyWidgetState extends State<MyWidget> {
 
   Future<String> uploadImage(filename) async {
     var request = http.MultipartRequest('POST',
-        Uri.parse("http://192.168.0.12:9876/FlutterWebServices/person"));
+        Uri.parse("http://192.168.0.6:9876/FlutterWebServices/person"));
     request.files.add(await http.MultipartFile.fromPath('picture', filename));
     var res = await request.send();
     return res.reasonPhrase;
